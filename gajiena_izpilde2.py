@@ -1,4 +1,4 @@
-def gajiena_izpilde2(current_state, index, darbiba):
+def gajiena_izpilde2(current_state, index, darbiba):     #seit padod cilveka izveletas darbibas lai veiktu gajienus
     num = current_state.virkne[index]
 
     if (darbiba == 1):
