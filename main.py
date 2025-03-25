@@ -11,7 +11,6 @@ import random
 #     else:
 #           print(f"Dators uzvar ar {datora_rez} punktiem")
 #
-#
 def virknes_izveide(garums):
       return [random.choice([1, 2, 3, 4]) for num in range(garums)]
 
