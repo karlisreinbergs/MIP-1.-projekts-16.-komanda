@@ -1,0 +1,1 @@
+# MIP-1.-projekts-16.-komanda
