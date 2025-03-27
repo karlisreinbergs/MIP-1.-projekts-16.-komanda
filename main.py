@@ -11,12 +11,13 @@ import random
 #     else:
 #           print(f"Dators uzvar ar {datora_rez} punktiem")
 #
-def virknes_izveide(garums):
+def virknes_izveide():
+      garums = random.randint(15, 20)
       return [random.choice([1, 2, 3, 4]) for num in range(garums)]           #izveido random virnki
 
 
 start_state = GameState(                                                      #izveido speles gajiena datu strukturu
-      virkne = virknes_izveide(15),
+      virkne = virknes_izveide(),    #uzlabots, lai virknes garumus būtu diapazonā no 15 līdz 20 skaitļiem
       cilveka_rez = 0,
       datora_rez = 0,
       ir_cilveka_gajiens = True,
