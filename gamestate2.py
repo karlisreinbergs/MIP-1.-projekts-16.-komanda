@@ -4,42 +4,44 @@ class GameState:
         self.cilveka_rez = cilveka_rez
         self.datora_rez = datora_rez
         self.ir_cilveka_gajiens = ir_cilveka_gajiens
-        self.h_vertiba = h_vertiba                  #heiristiska vertiba gajienam
+        self.h_vertiba = datora_rez - cilveka_rez                  #heiristiska vertiba gajienam
         self.children = []                          #seit glabajas gajieni iespejamiem
-
+    
     def tuksa_virkne(self):
         return len(self.virkne) == 0                #parbauda vai virkne ir tuksa
-
+    
     def generate_children(self):
         self.children = []                          #iztukso listu pirms liek taja nakamos gajienus
         for i, num in enumerate(self.virkne):           #katram ciparam virknei izveido gajiena variantus
-            self.children.append(self.pieskaita_sev(i)) #izsauc funkcijas, kas genere variantus
-        
-            if (num == 2):
-                self.children.append(self.sadala_2(i))
-            
-            if (num == 4):
-                self.children.append(self.sadala_4(i))
-
+            child1 = self.pieskaita_sev(i)
+            self.children.append(child1)
+            if num == 2:
+                child2 = self.sadala_2(i)
+                self.children.append(child2)
+            if num == 4:
+                child3 = self.sadala_4(i)
+                self.children.append(child3)
+    
     def pieskaita_sev(self, i):
-        jauna_virkne = self.virkne[:]               #nokope virkni
+        jauna_virkne = self.virkne[:]
         punkti = jauna_virkne.pop(i)
-
-        jauns_gajiens = GameState(                  #izveido gajienu
-            virkne = jauna_virkne,
-            cilveka_rez = self.cilveka_rez,
-            datora_rez = self.datora_rez,
-            ir_cilveka_gajiens = not self.ir_cilveka_gajiens,      #nomaina gajienu uz pretejeo
-            h_vertiba = punkti                      #pagaidam heiristisko vertibu pieskir ka skaitla vertibu
+        
+        jauns_gajiens = GameState(
+            virkne=jauna_virkne,
+            cilveka_rez=self.cilveka_rez,
+            datora_rez=self.datora_rez,
+            ir_cilveka_gajiens=not self.ir_cilveka_gajiens,
+            h_vertiba=0  # Tiks pārrēķināts automātiski
         )
 
-        if (self.ir_cilveka_gajiens):               #atskiriba no ta kuram gajiens pieskaita punktus
+        if self.ir_cilveka_gajiens:
             jauns_gajiens.cilveka_rez += punkti
         else:
             jauns_gajiens.datora_rez += punkti
-        
-        return jauns_gajiens
 
+        jauns_gajiens.h_vertiba = jauns_gajiens.datora_rez - jauns_gajiens.cilveka_rez
+        return jauns_gajiens
+    
     def sadala_2(self, i):
         jauna_virkne = self.virkne[:]
         jauna_virkne.pop(i)
