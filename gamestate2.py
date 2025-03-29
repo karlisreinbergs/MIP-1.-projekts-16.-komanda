@@ -1,5 +1,5 @@
 class GameState:
-    def __init__(self, virkne, cilveka_rez, datora_rez, ir_cilveka_gajiens, h_vertiba):
+    def __init__(self, virkne: str, cilveka_rez, datora_rez, ir_cilveka_gajiens: bool, h_vertiba):
         self.virkne = virkne
         self.cilveka_rez = cilveka_rez
         self.datora_rez = datora_rez
