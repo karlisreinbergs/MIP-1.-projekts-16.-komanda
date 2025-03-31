@@ -85,5 +85,5 @@ class GameState:
     
     def __str__(self):
         speletajs = "Cilvēks" if self.ir_cilveka_gajiens else "Dators"
-        return f"Virkne: {self.virkne} | Cilvēks: {self.cilveka_rez} | Dators: {self.datora_rez} | Tagad spēlē: {speletajs} | heiristiskais vertejums: {self.h_vertiba}"
+        return f"Virkne: {self.virkne} | Cilvēks: {self.cilveka_rez} | Dators: {self.datora_rez} | Tagad spēlē: {speletajs} | Heiristiskais vērtējums: {self.h_vertiba}"
     
