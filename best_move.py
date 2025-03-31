@@ -1,15 +1,18 @@
 from minimax import minimax
+from alfa_beta import alfa_beta
 
-def best_move(root, depth, algorithm='minimax'):
+def best_move(root, depth, alpha, beta, algorithm="minimax"):
     best_value = float('-inf')
     best_node = None
 
-    # Sāk ar max spēlētāju (dators)
-    if algorithm == 'minimax':
+    if algorithm == "minimax":
+        # Run minimax algorithm
         minimax(root, depth, True)
-    elif algorithm == 'alphabeta':
-        minimax(root, depth, True, float('-inf'), float('inf'))
+    else:
+        # Run alpha-beta algorithm
+        alfa_beta(root, depth, alpha, beta, True)
 
+    # Find the best child node
     for child in root.children:
         if child.value > best_value:
             best_value = child.value
